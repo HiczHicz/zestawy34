@@ -76,6 +76,55 @@ Szereg_rozdzielczy_duze
 
 write.csv(Szereg_rozdzielczy_duze, "szereg_duze.csv", row.names = FALSE, fileEncoding = "UTF-8")
 
+liczebność=h$counts
+
+środki_przedziałów=(lewy_kr+prawy_kr)/2
+
+śr_szer=1/n*sum(liczebność*środki_przedziałów)
+#10.18767
+var_szer=1/n*sum(liczebność*(środki_przedziałów-śr_szer)^2)
+#4.025704
+odch_szer=sqrt(var_szer)
+#2.580269
+
+
+N <- sum(liczebność)
+
+# Znajdź przedział medianowy
+N2 <- N / 2
+F <- cumsum(liczebność) # Suma skumulowana liczebności
+przedział_medianowy <- which(F >= N2)[1]
+
+# Dane dla mediany
+L <- lewy_kr[przedział_medianowy] # Dolna granica przedziału medianowego
+F_below <- ifelse(przedział_medianowy == 1, 0, F[przedział_medianowy - 1]) # Suma skumulowana przed medianowym
+f <- liczebność[przedział_medianowy] # Liczebność w przedziale medianowym
+w <- prawy_kr[przedział_medianowy] - lewy_kr[przedział_medianowy] # Szerokość przedziału
+
+# Obliczenie mediany
+mediana <- L + ((N2 - F_below) / f) * w
+mediana
+
+#DOMINANTA
+dominantowy_przedział <- which.max(liczebność)
+L <- lewy_kr[dominantowy_przedział] # Dolna granica przedziału dominantowego
+f_d <- liczebność[dominantowy_przedział] # Liczebność przedziału dominantowego
+
+# Liczebności sąsiednich przedziałów
+f_d_minus1 <- ifelse(dominantowy_przedział == 1, 0, liczebność[dominantowy_przedział - 1])
+f_d_plus1 <- ifelse(dominantowy_przedział == k, 0, liczebność[dominantowy_przedział + 1])
+
+# Szerokość przedziału
+w <- prawy_kr[dominantowy_przedział] - lewy_kr[dominantowy_przedział]
+
+# Obliczenie dominanty
+dominanta <- L + ((f_d - f_d_minus1) / ((f_d - f_d_minus1) + (f_d - f_d_plus1))) * w
+dominanta
+
+
+
+
+
 #MAŁE!!!!
 n=length(koszt_male)
 n
@@ -113,7 +162,56 @@ liczebność=h$counts
 Szereg_rozdzielczy_male=as.data.frame(cbind(przedział,lewy_kr,prawy_kr,liczebność))
 Szereg_rozdzielczy_male
 
-write.csv(Szereg_rozdzielczy_male, "szereg_male.csv", row.names = FALSE, fileEncoding = "UTF-8")
+write.csv(Szereg_rozdzielczy_male, "szereg_male_p.csv", row.names = FALSE, fileEncoding = "UTF-8")
+
+#DANE
+liczebność=h$counts
+
+środki_przedziałów=(lewy_kr+prawy_kr)/2
+
+śr_szer=1/n*sum(liczebność*środki_przedziałów)
+#6.8934
+var_szer=1/n*sum(liczebność*(środki_przedziałów-śr_szer)^2)
+#4.025704
+odch_szer=sqrt(var_szer)
+#2.580269
+
+
+N <- sum(liczebność)
+
+# Znajdź przedział medianowy
+N2 <- N / 2
+F <- cumsum(liczebność) # Suma skumulowana liczebności
+przedział_medianowy <- which(F >= N2)[1]
+
+# Dane dla mediany
+L <- lewy_kr[przedział_medianowy] # Dolna granica przedziału medianowego
+F_below <- ifelse(przedział_medianowy == 1, 0, F[przedział_medianowy - 1]) # Suma skumulowana przed medianowym
+f <- liczebność[przedział_medianowy] # Liczebność w przedziale medianowym
+w <- prawy_kr[przedział_medianowy] - lewy_kr[przedział_medianowy] # Szerokość przedziału
+
+# Obliczenie mediany
+mediana <- L + ((N2 - F_below) / f) * w
+mediana
+
+#DOMINANTA
+dominantowy_przedział <- which.max(liczebność)
+L <- lewy_kr[dominantowy_przedział] # Dolna granica przedziału dominantowego
+f_d <- liczebność[dominantowy_przedział] # Liczebność przedziału dominantowego
+
+# Liczebności sąsiednich przedziałów
+f_d_minus1 <- ifelse(dominantowy_przedział == 1, 0, liczebność[dominantowy_przedział - 1])
+f_d_plus1 <- ifelse(dominantowy_przedział == k, 0, liczebność[dominantowy_przedział + 1])
+
+# Szerokość przedziału
+w <- prawy_kr[dominantowy_przedział] - lewy_kr[dominantowy_przedział]
+
+# Obliczenie dominanty
+dominanta <- L + ((f_d - f_d_minus1) / ((f_d - f_d_minus1) + (f_d - f_d_plus1))) * w
+dominanta
+
+
+
 
 #ggplot histogram
 library(hrbrthemes)
