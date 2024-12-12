@@ -59,7 +59,7 @@ kr=mi-a/2+b*c(0:k)
 kr
 
 #HISTOGRAM
-h=hist(koszt_duze, breaks=kr, ylim=c(0,20), ylab="Liczebność", xlab="Koszt", main="Histogram kosztu 1m^2 w dużym mieście", col="#69b3a2")
+h=hist(koszt_duze, breaks=kr, ylim=c(0,20), ylab="Liczebność", xlab="Koszt", main=expression("Histogram kosztu 1m"^2~"w dużym mieście"), col="#69b3a2")
 
 #SZEREG ROZDZIELCZY
 przedział=1:k
@@ -147,7 +147,7 @@ kr=mi-a/2+b*c(0:k)
 kr
 
 #HISTOGRAM
-h=hist(koszt_male, breaks=kr, ylim=c(0,20), ylab="Liczebność", xlab="Koszt", main="Histogram kosztu 1m^2 w małym mieście", col="#69b3a2")
+h=hist(koszt_male, breaks=kr, ylim=c(0,20), ylab="Liczebność", xlab="Koszt",  main=expression("Histogram kosztu 1m"^2~"w małym mieście"), col="#69b3a2")
 
 #SZEREG ROZDZIELCZY
 przedział=1:k
@@ -252,7 +252,7 @@ kr=mi-a/2+b*c(0:k)
 kr
 
 #HISTOGRAM
-h=hist(koszt_wszystkie, breaks=kr, ylim=c(0,25), ylab="Liczebność", xlab="Koszt", main="Histogram kosztu 1m^2 we wszystkich\n badanych miastach", col="#69b3a2")
+h=hist(koszt_wszystkie, breaks=kr, ylim=c(0,25), ylab="Liczebność", xlab="Koszt",  main=expression("Histogram kosztu 1m"^2~"w obu badanych miastach"), col="#69b3a2")
 
 #SZEREG ROZDZIELCZY
 przedział=1:k

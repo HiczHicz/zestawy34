@@ -28,7 +28,7 @@ quantile(wynagrodzenia)
 
 #d
 #WYKRES PUDEŁKOWY
-boxplot(wynagrodzenia, outline=FALSE, col="#69b3a2", main="Wykres pudełkowy wynagrodzenia", ylim=c(4,10), ylab="Wynagrodzenie (tys. zł)", xlab="Pracownicy")
+boxplot(wynagrodzenia, outline=FALSE, col="#69b3a2", main="Wykres pudełkowy wynagrodzenia", ylim=c(4,10), ylab="Wynagrodzenie (tys. zł)")
 
 #e
 # rozstęp międzykwartylowy
@@ -41,7 +41,7 @@ IRQ=q3-q1 #2.41
 Q=(q3-q1)/2 #1.205 czyli ok. 1.23
 
 #kwartyl średni
-Q_śr=(q1+q2)/2 #4.96
+Q_śr=(q1+q3)/2 #5.335 
 
 #pozycyjny współczynnik asymetrii:
 Vasp=(q1+q3-2*q2)/(2*Q) #-0.3775934 czyli ok. -0.38
@@ -96,8 +96,9 @@ dane <- data.frame(
 
 boxplot(
   wynagrodzenie_w ~ płeć, data = dane, outline = FALSE,
-  col = c("#4F81BD", "#C0504D"), 
+  col = c("#DA95AAFF", "#C2DDB2FF"), 
   xlab = "Płeć",
   ylab = "Wynagrodzenie (tys. zł)",
   ylim=c(2,14),
   main = "Porównanie wynagrodzeń kobiet i mężczyzn")
+
